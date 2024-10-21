@@ -1,10 +1,12 @@
 <?php require "../includes/header.php"; ?>
+<?php require "../config/config.php"; ?>
+
 <?php 
 
 
 
 if(isset($_POST['submit'])){
-	if(empty($_POST['username']) || empty($_POST['email']) || ($_POST['password'])) {
+	if(empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password'])) {
 		echo "<script>alert(one or more input are empty)</>";
 	}
 	else{
@@ -12,15 +14,19 @@ if(isset($_POST['submit'])){
 		$email = $_POST['email'];
 		$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
+		//prepare the SQL query
 		$insert = $conn->prepare("INSERT INTO users (username, email, mypassword)
-		VALUES (:username, :email, :mypassword)");
+		VALUES (:username, :email, :mypassword);");
 
+//Execute the query with bound parameters
 		$insert->execute([
 			":username" => $username,
-			":username" => $email,
-			":username" => $password,
+			":email" => $email,
+			":mypassword" => $password,
 
-		])
+		]);
+
+		header("location: login.php");
 
 	}
 }
@@ -46,22 +52,22 @@ if(isset($_POST['submit'])){
     	<div class="container">
 	    	<div class="row justify-content-middle" style="margin-left: 397px;">
 	    		<div class="col-md-6 mt-5">
-						<form action="#" class="appointment-form" style="margin-top: -568px;">
+						<form action="register.php" method="POST" class="appointment-form" style="margin-top: -568px;">
 							<h3 class="mb-3">Register</h3>
 							<div class="row">
 								<div class="col-md-12">
 									<div class="form-group">
-			    					    <input type="text" class="form-control" placeholder="Username">
+			    					    <input type="text" name="username" class="form-control" placeholder="Username">
 			    				    </div>
 								</div>
                                 <div class="col-md-12">
 									<div class="form-group">
-			    					    <input type="text" class="form-control" placeholder="Email">
+			    					    <input type="text" name="email" class="form-control" placeholder="Email">
 			    				    </div>
 								</div>
                                 <div class="col-md-12">
 									<div class="form-group">
-			    					    <input type="password" class="form-control" placeholder="Password">
+			    					    <input type="password" name="password" class="form-control" placeholder="Password">
 			    				    </div>
 								</div>
 								
@@ -69,7 +75,7 @@ if(isset($_POST['submit'])){
 							
 								<div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="submit" value="Register" class="btn btn-primary py-3 px-4">
+                                        <input type="submit" name="submit" value="Register" class="btn btn-primary py-3 px-4">
                                     </div>
 								</div>
 							</div>
