@@ -1,4 +1,33 @@
 <?php require "../includes/header.php"; ?>
+<?php 
+
+
+
+if(isset($_POST['submit'])){
+	if(empty($_POST['username']) || empty($_POST['email']) || ($_POST['password'])) {
+		echo "<script>alert(one or more input are empty)</>";
+	}
+	else{
+		$username = $_POST['username'];
+		$email = $_POST['email'];
+		$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+		$insert = $conn->prepare("INSERT INTO users (username, email, mypassword)
+		VALUES (:username, :email, :mypassword)");
+
+		$insert->execute([
+			":username" => $username,
+			":username" => $email,
+			":username" => $password,
+
+		])
+
+	}
+}
+
+
+
+?>
 
     <div class="hero-wrap js-fullheight" style="background-image: url('<?php echo APPURL; ?>/images/image_2.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>

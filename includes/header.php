@@ -1,6 +1,6 @@
 <?php
 
-define("APPURL", "http://localhost/Hotel%20Booking%20Management%20System%20with%20Admin%20Panel%20in%20PHP%20MySQL%20Bootstrap%20PayPal%20and%20PDO");
+define("APPURL", "https://localhost/hotel-booking");
 
 ?>
 
