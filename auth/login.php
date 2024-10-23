@@ -13,6 +13,31 @@
         </div>
       </div>
     </div>
+<?php  
+//validate the email with query
+
+$login = $conn->query("SELECT * FROM users WHERE email='$email");
+$login->execute();
+
+$fetch = $login->fetch(PDO::FETCH_ASSOC);
+
+//get the row count
+
+if($login->rowCount() > 0) {
+	if(password_verify($password, $fetch['mypassword'])) {
+		//echo "<script>alert('LOGGED IN')</script>";
+
+$_SESSION ['username'] = $fetch['username'];
+$_SESSION ['id'] = $fetch['id'];
+
+
+	} else {
+		echo "<script>alert('email or password is wrong')</script>";
+	}
+}else{
+
+}
+?>
 
     <section class="ftco-section ftco-book ftco-no-pt ftco-no-pb">
     	<div class="container">
