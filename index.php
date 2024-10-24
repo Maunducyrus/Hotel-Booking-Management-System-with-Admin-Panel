@@ -1,3 +1,5 @@
+<!-- Index section  -->
+
 <?php require "includes/header.php"; ?>
 
     <div class="hero-wrap js-fullheight" style="background-image: url('images/image_2.jpg');" data-stellar-background-ratio="0.5">
@@ -13,6 +15,7 @@
       </div>
     </div>
 
+	
   
     <section class="ftco-section ftco-services">
     	<div class="container">

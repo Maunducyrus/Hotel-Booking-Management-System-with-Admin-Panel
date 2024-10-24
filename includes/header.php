@@ -1,3 +1,5 @@
+<!-- header section -->
+
 <?php
 
 define("APPURL", "https://localhost/hotel-booking");
