@@ -2,6 +2,7 @@
 
 <?php
 
+session_start();
 define("APPURL", "https://localhost/hotel-booking");
 
 ?>
