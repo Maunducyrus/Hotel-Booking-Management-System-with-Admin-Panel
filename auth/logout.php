@@ -4,6 +4,6 @@ session_start();
 session_unset();
 session_destroy();
 
-header("location: https://localhost/hotel-booking/#")
+header("location: https://localhost/hotel-booking/#");
 
 ?>
